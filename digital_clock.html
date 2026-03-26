@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .clock {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .timezone {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div class="clock">
+        <div class="timezone" id="utc"></div>
+        <div class="timezone" id="est"></div>
+        <div class="timezone" id="pst"></div>
+        <div class="timezone" id="gmt"></div>
+        <div class="timezone" id="ist"></div>
+        <div class="timezone" id="jst"></div>
+        <div class="timezone" id="aest"></div>
+    </div>
+    <script>
+        function updateClocks() {
+            const utcDate = new Date();
+            document.getElementById('utc').innerText = 'UTC: ' + utcDate.toUTCString().slice(17, 25);
+            document.getElementById('est').innerText = 'EST: ' + new Date(utcDate.setHours(utcDate.getHours() - 5)).toTimeString().slice(0, 8);
+            document.getElementById('pst').innerText = 'PST: ' + new Date(utcDate.setHours(utcDate.getHours() - 3)).toTimeString().slice(0, 8);
+            document.getElementById('gmt').innerText = 'GMT: ' + utcDate.toUTCString().slice(17, 25);
+            document.getElementById('ist').innerText = 'IST: ' + new Date(utcDate.setHours(utcDate.getHours() + 5, utcDate.getMinutes() + 30)).toTimeString().slice(0, 8);
+            document.getElementById('jst').innerText = 'JST: ' + new Date(utcDate.setHours(utcDate.getHours() + 3)).toTimeString().slice(0, 8);
+            document.getElementById('aest').innerText = 'AEST: ' + new Date(utcDate.setHours(utcDate.getHours() + 1)).toTimeString().slice(0, 8);
+        }
+        setInterval(updateClocks, 1000);
+        updateClocks();
+    </script>
+</body>
+</html>
