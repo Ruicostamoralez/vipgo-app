@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIPGO Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: gold;
+        }
+        .clock {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .timezone {
+            margin-bottom: 10px;
+        }
+        .management-feature {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: gold;
+            border: none;
+            padding: 10px;
+            color: black;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e5c84b;
+        }
+    </style>
+</head>
+<body>
+    <h1>VIPGO Luxury Chauffeur Dashboard</h1>
+    <div class="clock">
+        <div id="clock"></div>
+        <div class="timezone">
+            <label for="timezone">Select Time Zone:</label>
+            <select id="timezone">
+                <option value="UTC">UTC</option>
+                <option value="America/New_York">New York (UTC-4)</option>
+                <option value="Europe/London">London (UTC+0)</option>
+                <option value="Asia/Tokyo">Tokyo (UTC+9)</option>
+                <option value="Australia/Sydney">Sydney (UTC+11)</option>
+            </select>
+        </div>
+    </div>
+    <div class="management-feature">
+        <h2>Management Actions</h2>
+        <button onclick="alert('Feature 1 Clicked')">Manage Bookings</button>
+        <button onclick="alert('Feature 2 Clicked')">Edit Driver Details</button>
+        <button onclick="alert('Feature 3 Clicked')">View Reports</button>
+    </div>
+    <script>
+        function updateClock() {
+            let timeZone = document.getElementById('timezone').value;
+            let options = { timeZone: timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            let now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', options);
+        }
+        document.getElementById('timezone').addEventListener('change', updateClock);
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
